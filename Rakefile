@@ -15,6 +15,7 @@ task :run do | t, arguments |
       --volume="/docker/rtorrent-0/session:/tmp/rtorrent/session" \
       --volume="/docker/rtorrent-0/download:/tmp/rtorrent/download" \
         callowaylc/rtorrent:latest \
+          -n \
           -d /tmp/rtorrent/download \
           -s /tmp/rtorrent/session \
           -o download_rate=0 \
