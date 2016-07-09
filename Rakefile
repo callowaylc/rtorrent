@@ -23,6 +23,17 @@ task :run do | t, arguments |
   }
 end
 
+desc "convert magnet link to torrent"
+task :magnet, [ :uri ] do | t, arguments |
+  exec %{
+    sudo docker run \
+      --rm \
+      --entrypoint="/usr/local/bin/magnet-to-torrent" \
+        callowaylc/rtorrent \
+          "#{ arguments[:uri] }"
+  }
+end
+
 ## methods ######################################
 
 private def command bash
