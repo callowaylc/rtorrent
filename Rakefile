@@ -5,14 +5,15 @@
 ## tasks ########################################
 
 desc "start rtorrent session"
-task :run, [ :command ] do | t, arguments |
+task :run do | t, arguments |
   exec %{
+    sudo docker rm -f #{ name } > /dev/null 2>&1
     sudo docker run \
       -it \
-      --name="rtorrent-0" \
+      --name="#{ name }" \
       --volume="/docker/rtorrent-0/session:/tmp/rtorrent/session" \
       --volume="/docker/rtorrent-0/download:/tmp/rtorrent/download" \
-        callowaylc\rtorrent \
+        callowaylc/rtorrent:latest \
           -d /tmp/rtorrent/download \
           -s /tmp/rtorrent/session \
           -o download_rate=0 \
@@ -33,7 +34,7 @@ private def command bash
 end
 
 private def name
-  'salt-master-0'
+  'rtorrent-0'
 end
 
 private def home

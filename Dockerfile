@@ -16,7 +16,7 @@ COPY usr/ /usr/
 
 VOLUME ["/tmp/torrent/session", "/tmp/torrent/download"]
 
-# Run ###########################################
+ # Run ###########################################
 
 ENTRYPOINT [ "/usr/bin/rtorrent" ]
 CMD [ "-h" ]
