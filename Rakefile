@@ -10,6 +10,7 @@ task :run do | t, arguments |
     sudo docker rm -f #{ name } > /dev/null 2>&1
     sudo docker run \
       -it \
+      --rm \
       --name="#{ name }" \
       --volume="/docker/rtorrent-0/session:/tmp/rtorrent/session" \
       --volume="/docker/rtorrent-0/download:/tmp/rtorrent/download" \
