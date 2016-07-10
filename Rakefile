@@ -12,12 +12,13 @@ task :run do | t, arguments |
       -it \
       --rm \
       --name="#{ name }" \
-      --volume="/docker/rtorrent-0/session:/tmp/rtorrent/session" \
-      --volume="/docker/rtorrent-0/download:/tmp/rtorrent/download" \
+      --volume="/docker/rtorrent-0/session:/tmp/torrent/session" \
+      --volume="/docker/rtorrent-0/download:/tmp/torrent/download" \
+      --volume="/docker/rtorrent-0/torrent:/tmp/torrent/torrent" \
         callowaylc/rtorrent:latest \
           -n \
-          -d /tmp/rtorrent/download \
-          -s /tmp/rtorrent/session \
+          -d /tmp/torrent/download \
+          -s /tmp/torrent/session \
           -o download_rate=0 \
           -o upload_rate=0 \
           -o port_random=yes
@@ -31,8 +32,9 @@ task :magnet, [ :uri ] do | t, arguments |
     sudo docker run \
       --rm \
       --entrypoint="/usr/local/bin/magnet-to-torrent" \
+      --volume="/docker/rtorrent-0/torrent:/tmp/torrent/torrent" \
         callowaylc/rtorrent \
-          "#{ arguments[:uri] }"
+          "#{ arguments[:uri] }" /tmp/torrent/torrent
   }
 end
 

@@ -6,6 +6,7 @@ MAINTAINER Christian Calloway <callowaylc@gmail.com>
 RUN true && \
   mkdir -p /tmp/torrent/download && \
   mkdir -p /tmp/torrent/session && \
+  mkdir -p /tmp/torrent/torrent && \
   apt-get update && \
   apt-get install -y \
     rtorrent
